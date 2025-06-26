@@ -1,3 +1,4 @@
+#written by Khephren Gould for Uvic Rocketry June 25, 2025
 import serial.tools.list_ports
 
 portvar = ""
