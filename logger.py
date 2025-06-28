@@ -2,12 +2,14 @@ import serial.tools.list_ports
 from serial.serialutil import SerialException
 import os
 import time
+import asyncio
 dirname = os.path.dirname(__file__)
 
 class logger:
     activePort = None
+    #look for / create logfile with path that is relative to script location
     logfile = os.path.join(dirname, 'Anduril2Telemetry.txt')
-    baudrate = 9600
+    baudrate = 9600 #todo ensure baudrate is correct based on what heltec transmits
 
     def __init__(self):
         self.init_serial_port()
@@ -52,10 +54,14 @@ class logger:
             print(f"Serial port failed to open. (" + str(e) + ") Try disconnecting / reconnecting the USB cable")
             exit(1)
 
-    def run(self):
+    async def run(self):
         print(f"opening file: {self.logfile} \n for writing. \n Enter 'Save' to exit the program safely")
         with open(self.logfile, encoding="utf-8", mode='a+') as f:
             while True:
+                user_input = await asyncio.to_thread(input)
                 if self.activePort.in_waiting > 0:
                     packet = self.activePort.readline()
                     f.write(packet.decode('utf'))
+
+                if user_input.lower() == "save":
+                    exit(0)
