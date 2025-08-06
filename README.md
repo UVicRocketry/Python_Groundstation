@@ -8,13 +8,12 @@
 *the python script takes a COM port as an argument and logs serial data from the COM port to Anduril2Telemetry.txt*
 
 ## Setup Guide
-*[Fill out if applicable]*
-clone the repo
-install docker: https://docs.docker.com/get-started/get-docker/
-run: `(sudo) docker-compose build`
+clone the repo <br>
+install docker: https://docs.docker.com/get-started/get-docker/ <br>
+run: `(sudo) docker-compose build` <br>
 make sure the RTL-SDR is inserted
-next run: `docker-compose up`
-open a second terminal and run: ` docker exec -it aprs_direwolf bash `
+next run: `docker-compose up` <br>
+open a second terminal and run: ` docker exec -it aprs_direwolf bash ` <br>
 finally: `python3 src/main.py`
 
-*now the direwolf service is running in the background and you have access to the python app's cli interface
+**now the direwolf service is running in the background and you have access to the python app's cli interface**
