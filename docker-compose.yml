@@ -1,0 +1,14 @@
+services:
+  aprs:
+    build: .
+    container_name: aprs_direwolf
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+      # - /dev/ttyS3:/dev/ttyS3
+    volumes:
+      - /logs:/app/logs
+    privileged: true
+    stdin_open: true
+    tty: true
+
+      
